@@ -77,7 +77,7 @@ class MyCustomStrategy(ScriptStrategyBase):
             mid_price = self.connector.get_mid_price(self.trading_pair).quantize(d("0.0001"))
 
             inventory_skew = d(self.inventory_skew_tanh())/mid_price  # convert to % change
-            trend_skew = d(self.short_term_trend()) + d(0.5) * d(self.long_term_trend())
+            trend_skew = d(self.short_term_trend()) - d(0.5) * d(self.long_term_trend())
             total_skew = d(inventory_skew + trend_skew)
   
             # Final prices
